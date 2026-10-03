@@ -1,0 +1,36 @@
+tetoDE Window Manager TODO
+==========================
+
+[X] Implement framebuffer window rendering
+[ ] Draw window backgrounds
+[ ] Draw window borders
+[ ] Draw title bars
+[ ] Draw window titles
+
+[ ] Implement window stacking
+[ ] Implement active/focused window
+[ ] Implement window raise
+[ ] Implement window lower
+
+[ ] Implement window movement
+[ ] Implement window resizing
+[ ] Implement minimum window size
+
+[ ] Implement mouse input
+[ ] Implement mouse window selection
+[ ] Implement mouse dragging
+[ ] Implement resize handles
+
+[ ] Implement keyboard focus
+[ ] Implement window close requests
+
+[ ] Implement multiple windows
+[ ] Implement desktop window list
+[ ] Implement application window registration
+
+[ ] Add window manager event loop
+[ ] Connect window manager to framebuffer
+[ ] Connect window manager to input system
+
+[ ] Add window manager shutdown
+[ ] Handle invalid/destroyed windows safely
