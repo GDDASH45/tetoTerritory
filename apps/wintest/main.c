@@ -26,7 +26,7 @@ int main(void)
 
     teto_window_set_background(
         window,
-        0xFF000000
+        0xFF303030
     );
 
     teto_window_draw(window);
