@@ -12,7 +12,7 @@ DD_VER     := 03
 YY_VER     := 26
 PATCH_VER  := 00
 
-GITHUB_PAGE := https://github.com/GDDASH45/tetoDE
+GITHUB_PAGE := https://github.com/GDDASH45/tetoTerritory
 
 VERSTRING  := $(MM_VER).$(DD_VER).$(YY_VER).$(PATCH_VER)
 
@@ -30,7 +30,7 @@ LIBRARIES := $(addsuffix built-in.a,$(LIB_DIRS))
 TARGET := bin/tetoTerritory
 
 DEB_DIR := deb
-DEB_PACKAGE := $(DEB_DIR)/tetoDE.deb
+DEB_PACKAGE := $(DEB_DIR)/tetoTerritory.deb
 
 all: $(TARGET)
 
