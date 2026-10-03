@@ -3,7 +3,7 @@ tetoDE Window Manager TODO
 
 [X] Implement framebuffer window rendering
 [X] Draw window backgrounds
-[ ] Draw window borders
+[X] Draw window borders
 [ ] Draw title bars
 [ ] Draw window titles
 

@@ -49,6 +49,12 @@ int teto_window_is_visible(
     const teto_window_t *window
 );
 
+void teto_window_set_border(
+    teto_window_t *window,
+    unsigned int color,
+    int width
+);
+
 void teto_window_draw(
     teto_window_t *window
 );

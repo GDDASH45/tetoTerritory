@@ -16,6 +16,9 @@ struct teto_window
     unsigned int background_color;
 
     int visible;
+
+    unsigned int border_color;
+    int border_width;
 };
 
 teto_window_t *teto_window_create(
@@ -40,6 +43,9 @@ teto_window_t *teto_window_create(
     window->visible = 1;
     window->title = NULL;
     window->background_color = 0xFF202020;
+
+    window->border_color = 0xFFFFFFFF;
+    window->border_width = 2;
 
     if (title != NULL)
     {
@@ -110,6 +116,22 @@ void teto_window_set_size(
     window->height = height;
 }
 
+void teto_window_set_border(
+    teto_window_t *window,
+    unsigned int color,
+    int width
+)
+{
+    if (window == NULL)
+        return;
+
+    if (width < 0)
+        width = 1;
+
+    window->border_color = color;
+    window->border_width = width;
+}
+
 void teto_window_set_title(
     teto_window_t *window,
     const char *title
@@ -163,6 +185,8 @@ void teto_window_draw(
     teto_window_t *window
 )
 {
+    int border;
+
     if (window == NULL)
         return;
 
@@ -176,4 +200,41 @@ void teto_window_draw(
         window->height,
         window->background_color
     );
+
+    for (border = 0;
+         border < window->border_width;
+         border++)
+    {
+        framebuffer_fill_rect(
+            window->x + border,
+            window->y + border,
+            window->width - border * 2,
+            1,
+            window->border_color
+        );
+
+        framebuffer_fill_rect(
+            window->x + border,
+            window->y + window->height - border - 1,
+            window->width - border * 2,
+            1,
+            window->border_color
+        );
+
+        framebuffer_fill_rect(
+            window->x + border,
+            window->y + border,
+            1,
+            window->height - border * 2,
+            window->border_color
+        );
+
+        framebuffer_fill_rect(
+            window->x + window->width - border - 1,
+            window->y + border,
+            1,
+            window->height - border * 2,
+            window->border_color
+        );
+    }
 }

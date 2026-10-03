@@ -29,6 +29,12 @@ int main(void)
         0xFF303030
     );
 
+    teto_window_set_border(
+        window,
+        0xFFFFFFFF,
+        2
+    );
+
     teto_window_draw(window);
 
     while (1)
