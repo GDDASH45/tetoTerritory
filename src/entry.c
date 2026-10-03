@@ -2,6 +2,7 @@
 #include <panel.h>
 #include <ui/font.h>
 #include <mouse.h>
+#include <startmenu.h>
 
 #include <stddef.h>
 
@@ -33,14 +34,27 @@ int main(void)
 
     panel_init();
 
+    if (startmenu_init() != 0)
+    {
+        panel_shutdown();
+        mouse_shutdown();
+        DE_shutdown();
+        return 1;
+    }
+
     while (1)
     {
         mouse_update();
 
         DE_run();
 
+        startmenu_update();
+        startmenu_draw();
+
         mouse_draw();
     }
+
+    startmenu_shutdown();
 
     panel_shutdown();
 
