@@ -5,9 +5,18 @@
 
 int main(void)
 {
+    teto_font_t *font;
     teto_window_t *window;
 
     if (framebuffer_init() < 0)
+        return 1;
+
+    font = font_load(
+        "/usr/share/fonts/truetype/ubuntu/UbuntuMono-RI.ttf",
+        16
+    );
+
+    if (font == NULL)
         return 1;
 
     window = teto_window_create(
@@ -15,12 +24,13 @@ int main(void)
         100,
         800,
         500,
-        "Window Test"
+        "window"
     );
 
     if (window == NULL)
     {
         framebuffer_shutdown();
+        font_destroy(font);
         return 1;
     }
 
@@ -35,6 +45,11 @@ int main(void)
         2
     );
 
+    teto_window_set_font(
+        window,
+        font
+    );
+
     teto_window_set_titlebar(
         window,
         0xFF39C5BB,
@@ -47,6 +62,7 @@ int main(void)
         sleep(1);
 
     teto_window_destroy(window);
+    font_destroy(font);
     framebuffer_shutdown();
 
     return 0;

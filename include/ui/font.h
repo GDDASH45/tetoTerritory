@@ -12,4 +12,12 @@ void font_destroy(
     teto_font_t *font
 );
 
+void font_draw_text(
+    teto_font_t *font,
+    int x,
+    int y,
+    const char *text,
+    unsigned int color
+);
+
 #endif

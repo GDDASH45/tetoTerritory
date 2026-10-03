@@ -24,4 +24,9 @@ void framebuffer_fill_rect(
     unsigned int color
 );
 
+unsigned int framebuffer_get_pixel(
+    int x,
+    int y
+);
+
 #endif

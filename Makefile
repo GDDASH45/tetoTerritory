@@ -71,7 +71,7 @@ apps: $(APP_TARGETS)
 # Build an individual application
 bin/apps/%: apps/%/main.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $< src/framebuffer.c src/wm/main.c $(LDFLAGS) -o $@ $(LDLIBS)
+	$(CC) $(CFLAGS) $< src/framebuffer.c src/wm/main.c src/ui/font.c $(LDFLAGS) -o $@ $(LDLIBS)
 
 debpkg: $(TARGET)
 	@rm -rf $(DEB_DIR)

@@ -3,6 +3,8 @@
 
 typedef struct teto_window teto_window_t;
 
+#include <ui/font.h>
+
 teto_window_t *teto_window_create(
     int x,
     int y,
@@ -59,6 +61,11 @@ void teto_window_set_titlebar(
     teto_window_t *window,
     unsigned int color,
     int height
+);
+
+void teto_window_set_font(
+    teto_window_t *window,
+    teto_font_t *font
 );
 
 void teto_window_draw(

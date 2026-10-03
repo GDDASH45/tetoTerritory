@@ -12,6 +12,7 @@ struct teto_window
     int height;
 
     char *title;
+    teto_font_t *font;
 
     unsigned int background_color;
 
@@ -52,6 +53,8 @@ teto_window_t *teto_window_create(
 
     window->titlebar_color = 0xFF39C5BB;
     window->titlebar_height = 32;
+
+    window->font = NULL;
 
     if (title != NULL)
     {
@@ -107,6 +110,17 @@ void teto_window_set_position(
 
     window->x = x;
     window->y = y;
+}
+
+void teto_window_set_font(
+    teto_window_t *window,
+    teto_font_t *font
+)
+{
+    if (window == NULL)
+        return;
+
+    window->font = font;
 }
 
 void teto_window_set_size(
@@ -231,6 +245,19 @@ void teto_window_draw(
             window->width - window->border_width * 2,
             window->titlebar_height,
             window->titlebar_color
+        );
+    }
+
+    if (window->font != NULL &&
+        window->title != NULL &&
+        window->titlebar_height > 0)
+    {
+        font_draw_text(
+            window->font,
+            window->x + window->border_width + 8,
+            window->y + window->border_width + 23,
+            window->title,
+            0xFFFFFFFF
         );
     }
 

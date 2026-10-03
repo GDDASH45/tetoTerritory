@@ -3,3 +3,4 @@
 bin/
 *.deb
 deb/
+copy.sh

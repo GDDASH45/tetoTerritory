@@ -180,3 +180,35 @@ void framebuffer_fill_rect(
         }
     }
 }
+
+unsigned int framebuffer_get_pixel(
+    int x,
+    int y
+)
+{
+    unsigned char *pixel;
+
+    if (framebuffer == NULL)
+        return 0;
+
+    if (x < 0 || y < 0)
+        return 0;
+
+    if (x >= framebuffer_screen_width ||
+        y >= framebuffer_screen_height)
+        return 0;
+
+    if (framebuffer_screen_bpp != 32)
+        return 0;
+
+    pixel =
+        (unsigned char *)framebuffer +
+        (y * framebuffer_line_length) +
+        (x * 4);
+
+    return
+        ((unsigned int)pixel[0]) |
+        ((unsigned int)pixel[1] << 8) |
+        ((unsigned int)pixel[2] << 16) |
+        ((unsigned int)pixel[3] << 24);
+}

@@ -5,7 +5,7 @@ tetoDE Window Manager TODO
 [X] Draw window backgrounds
 [X] Draw window borders
 [X] Draw title bars
-[ ] Draw window titles
+[X] Draw window titles
 
 [ ] Implement window stacking
 [ ] Implement active/focused window
