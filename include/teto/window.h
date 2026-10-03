@@ -55,6 +55,12 @@ void teto_window_set_border(
     int width
 );
 
+void teto_window_set_titlebar(
+    teto_window_t *window,
+    unsigned int color,
+    int height
+);
+
 void teto_window_draw(
     teto_window_t *window
 );

@@ -35,6 +35,12 @@ int main(void)
         2
     );
 
+    teto_window_set_titlebar(
+        window,
+        0xFF39C5BB,
+        32
+    );
+
     teto_window_draw(window);
 
     while (1)

@@ -17,6 +17,9 @@ struct teto_window
 
     int visible;
 
+    unsigned int titlebar_color;
+    int titlebar_height;
+
     unsigned int border_color;
     int border_width;
 };
@@ -46,6 +49,9 @@ teto_window_t *teto_window_create(
 
     window->border_color = 0xFFFFFFFF;
     window->border_width = 2;
+
+    window->titlebar_color = 0xFF39C5BB;
+    window->titlebar_height = 32;
 
     if (title != NULL)
     {
@@ -132,6 +138,22 @@ void teto_window_set_border(
     window->border_width = width;
 }
 
+void teto_window_set_titlebar(
+    teto_window_t *window,
+    unsigned int color,
+    int height
+)
+{
+    if (window == NULL)
+        return;
+
+    if (height < 0)
+        height = 0;
+
+    window->titlebar_color = color;
+    window->titlebar_height = height;
+}
+
 void teto_window_set_title(
     teto_window_t *window,
     const char *title
@@ -200,6 +222,17 @@ void teto_window_draw(
         window->height,
         window->background_color
     );
+
+    if (window->titlebar_height > 0)
+    {
+        framebuffer_fill_rect(
+            window->x + window->border_width,
+            window->y + window->border_width,
+            window->width - window->border_width * 2,
+            window->titlebar_height,
+            window->titlebar_color
+        );
+    }
 
     for (border = 0;
          border < window->border_width;
