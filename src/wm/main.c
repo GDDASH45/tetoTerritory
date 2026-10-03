@@ -13,6 +13,8 @@ struct teto_window
 
     char *title;
 
+    unsigned int background_color;
+
     int visible;
 };
 
@@ -37,6 +39,7 @@ teto_window_t *teto_window_create(
     window->height = height;
     window->visible = 1;
     window->title = NULL;
+    window->background_color = 0xFF202020;
 
     if (title != NULL)
     {
@@ -145,6 +148,17 @@ int teto_window_is_visible(
     return window->visible;
 }
 
+void teto_window_set_background(
+    teto_window_t *window,
+    unsigned int color
+)
+{
+    if (window == NULL)
+        return;
+
+    window->background_color = color;
+}
+
 void teto_window_draw(
     teto_window_t *window
 )
@@ -160,6 +174,6 @@ void teto_window_draw(
         window->y,
         window->width,
         window->height,
-        0xFF202020
+        window->background_color
     );
 }

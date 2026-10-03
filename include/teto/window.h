@@ -40,6 +40,11 @@ void teto_window_set_title(
     const char *title
 );
 
+void teto_window_set_background(
+    teto_window_t *window,
+    unsigned int color
+);
+
 int teto_window_is_visible(
     const teto_window_t *window
 );

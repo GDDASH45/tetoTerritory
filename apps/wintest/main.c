@@ -24,6 +24,11 @@ int main(void)
         return 1;
     }
 
+    teto_window_set_background(
+        window,
+        0xFF000000
+    );
+
     teto_window_draw(window);
 
     while (1)
