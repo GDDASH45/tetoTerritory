@@ -64,7 +64,9 @@ debpkg: $(TARGET)
 	@rm -rf $(DEB_DIR)
 	@mkdir -p $(DEB_DIR)/DEBIAN
 	@mkdir -p $(DEB_DIR)/usr/bin
+	@mkdir -p $(DEB_DIR)/usr/share/tetoDE
 	@cp $(TARGET) $(DEB_DIR)/usr/bin/tetoTerritory
+	@cp share/teto.ttf $(DEB_DIR)/usr/share/tetoDE/teto.ttf
 	@printf '%s\n' \
 		'Package: tetode' \
 		'Version: $(VERSTRING)' \
@@ -82,6 +84,7 @@ clean:
 	find src -type f -name 'built-in.a' -delete
 	rm -f include/generated/DEver.h
 	rm -f built-in.a
+	rm -rf deb
 	rm -f $(TARGET)
 
 .PHONY: all debpkg clean
