@@ -29,10 +29,15 @@ LIBRARIES := $(addsuffix built-in.a,$(LIB_DIRS))
 
 TARGET := bin/tetoTerritory
 
+# Applications
+APP_SOURCES := $(shell find apps -mindepth 2 -type f -name 'main.c')
+APP_NAMES := $(notdir $(patsubst %/main.c,%,$(APP_SOURCES)))
+APP_TARGETS := $(addprefix bin/apps/,$(APP_NAMES))
+
 DEB_DIR := deb
 DEB_PACKAGE := $(DEB_DIR)/tetoTerritory.deb
 
-all: $(TARGET)
+all: $(TARGET) apps
 
 $(GENERATED_VERSION_NAME_HEADER):
 	@mkdir -p $(dir $@)
@@ -60,6 +65,14 @@ src/built-in.a: $(filter src/%.o,$(OBJECTS))
 src/%/built-in.a:
 	$(AR) rcs $@ $(filter src/$*%.o,$(OBJECTS))
 
+# Build all applications
+apps: $(APP_TARGETS)
+
+# Build an individual application
+bin/apps/%: apps/%/main.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@ $(LDLIBS)
+
 debpkg: $(TARGET)
 	@rm -rf $(DEB_DIR)
 	@mkdir -p $(DEB_DIR)/DEBIAN
@@ -84,7 +97,8 @@ clean:
 	find src -type f -name 'built-in.a' -delete
 	rm -f include/generated/DEver.h
 	rm -f built-in.a
+	rm -rf bin/apps
 	rm -rf deb
 	rm -f $(TARGET)
 
-.PHONY: all debpkg clean
+.PHONY: all apps debpkg clean
